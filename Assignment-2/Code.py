@@ -187,32 +187,6 @@ class Panorama_Creation:
         return M
 
 
-
-    # def get_transforms_to_mid(self):
-
-    #     '''
-    #     Applies affine transforms to successive frames and 
-    #     multiplies the transforms to get the affine transform 
-    #     from ith frame to middle frame.
-    #     '''
-
-    #     l=len(self.frames)        
-    #     self.affine_matrices=[None]*l
-    #     M=np.eye(3)
-    #     p=l//2
-    #     self.affine_matrices[p]=M
-    #     print("Final transform for index "+str(p)+" is: "+str(M))
-
-    #     for i in range(p-1,-1,-1):
-    #         self.affine_matrices[i]=np.matmul(self.affine_matrices[i+1],self.affine_model(i,i+1))
-    #         M=self.affine_matrices[i]
-    #         print("Final transform for index "+str(i)+" is: "+str(M))
-
-    #     for i in range(p+1,l):
-    #         self.affine_matrices[i]=np.matmul(self.affine_matrices[i-1],self.affine_model(i,i-1))
-    #         M=self.affine_matrices[i]
-    #         print("Final transform for index "+str(i)+" is: "+str(M))
-    #     return
     
     def get_transforms_to_left(self):
 
@@ -228,11 +202,6 @@ class Panorama_Creation:
         p=0
         self.affine_matrices[p]=M
         print("Final transform for index "+str(p)+" is: "+str(M))
-
-        # for i in range(p-1,-1,-1):
-        #     self.affine_matrices[i]=np.matmul(self.affine_matrices[i+1],self.affine_model(i,i+1))
-        #     M=self.affine_matrices[i]
-        #     print("Final transform for index "+str(i)+" is: "+str(M))
 
         for i in range(p+1,l):
             self.affine_matrices[i]=np.matmul(self.affine_matrices[i-1],self.affine_model(i,i-1))
@@ -329,13 +298,6 @@ if __name__ == "__main__":
     P.generate_panorama(image_name)
     E=time.time()
     print("Total Time taken is: "+str((E-S)/60)+" minutes")
-
-
-    # S=time.time()
-    # P=Panorama_Creation(r"C:\Users\Lenovo\Desktop\A2\CV_assignment_2_dataset\5",r"C:\Users\Lenovo\Desktop\A2\output\5")
-    # P.generate_panorama("merged_image_5")
-    # E=time.time()
-    # print("Total Time taken is: "+str((E-S)/60)+" minutes")
 
    
 
